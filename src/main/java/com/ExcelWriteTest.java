@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class ExcelWriteTest {
 
-    String path = "D:\\Code\\IdeaWordSpace\\zhul-poi";
+    String path = "D:\\Code\\zhul-poi";
 
     @Test
     public void testWrite03() throws Exception {
