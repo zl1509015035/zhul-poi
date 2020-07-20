@@ -82,35 +82,35 @@ public class ExcelReadTest {
         Sheet sheet = workbook.getSheetAt(0);
         //获取标题内容
         Row rowTitle = sheet.getRow(0);
-        if(rowTitle!=null){
+        if (rowTitle != null) {
             //得到这一行有多少列
             int cellCount = rowTitle.getPhysicalNumberOfCells();
-            for(int cellNum=0;cellNum<cellCount;cellNum++){
+            for (int cellNum = 0; cellNum < cellCount; cellNum++) {
                 Cell cell = rowTitle.getCell(cellNum);
-                if(cell!=null){
+                if (cell != null) {
                     //获取cell的类型
                     int cellType = cell.getCellType();
                     //获取string类型的数值
                     String cellValue = cell.getStringCellValue();
-                    System.out.print(cellValue+"|");
+                    System.out.print(cellValue + "|");
                 }
             }
             System.out.println();
         }
-        
+
         // 获取表中内容
         int rowCount = sheet.getPhysicalNumberOfRows();
         for (int rowNum = 0; rowNum < rowCount; rowNum++) {
             Row rowData = sheet.getRow(rowNum);
-            if(rowData!=null){
+            if (rowData != null) {
                 //读取列
                 int cellCount = rowTitle.getPhysicalNumberOfCells();
                 for (int cellNum = 0; cellNum < cellCount; cellNum++) {
 //                    System.out.print("["+(rowNum+1)+"-"+(cellNum+1)+"]");
                     Cell cell = rowData.getCell(cellNum);
-                    if(cell!=null){
+                    if (cell != null) {
                         int cellType = cell.getCellType();
-                        String cellValue="";
+                        String cellValue = "";
                         switch (cellType) {
                             case HSSFCell.CELL_TYPE_STRING: // 字符串
                                 System.out.print("【String】");
@@ -125,11 +125,11 @@ public class ExcelReadTest {
                                 break;
                             case HSSFCell.CELL_TYPE_NUMERIC: // 数字（日期、普通数字）
                                 System.out.print("【NUMERIC】");
-                                if (HSSFDateUtil.isCellDateFormatted(cell)){ // 日期
+                                if (HSSFDateUtil.isCellDateFormatted(cell)) { // 日期
                                     System.out.print("【日期】");
                                     Date date = cell.getDateCellValue();
                                     cellValue = new DateTime(date).toString("yyyy-MM-dd");
-                                }else {
+                                } else {
                                     // 不是日期格式，防止数字过长！
                                     System.out.print("【转换为字符串输出】");
                                     cell.setCellType(HSSFCell.CELL_TYPE_STRING);
