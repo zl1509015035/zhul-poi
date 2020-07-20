@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.joda.time.DateTime;
 import org.junit.Test;
@@ -99,6 +100,7 @@ public class ExcelWriteTest {
         System.out.println("生成完成！");
     }
 
+
     @Test
     public void testWrite03BigData() throws Exception {
         long start = System.currentTimeMillis();
@@ -123,6 +125,10 @@ public class ExcelWriteTest {
         System.out.println((double)(end-start)/1000);
     }
 
+    /**
+     *  07xlsx 使用XSSFWorkbook导出数据，导出大数据时效率低
+     * @throws Exception
+     */
     @Test
     public void testWrite07BigData() throws Exception {
         long start = System.currentTimeMillis();
@@ -146,4 +152,36 @@ public class ExcelWriteTest {
         long end = System.currentTimeMillis();
         System.out.println((double)(end-start)/1000);
     }
+
+    /**
+     *  07xlsx 使用SXSSFWorkbook导出大数据，效率高
+     * @throws Exception
+     */
+    @Test
+    public void testWrite07SxssfBigData() throws Exception {
+        long start = System.currentTimeMillis();
+
+        //创建一个工作簿
+        Workbook workbook = new SXSSFWorkbook();
+        //创建页码
+        Sheet sheet = workbook.createSheet();
+        //写入数据
+        for (int rowNumber = 0; rowNumber < 65537; rowNumber++) {
+            Row row = sheet.createRow(rowNumber);
+            for (int cellNumber = 0; cellNumber < 10; cellNumber++) {
+                Cell cell = row.createCell(cellNumber);
+                cell.setCellValue(cellNumber);
+            }
+        }
+        System.out.println("over!");
+        FileOutputStream fileOutputStream = new FileOutputStream(path + "\\testWrite07SxssfBigData.xls");
+        workbook.write(fileOutputStream);
+        fileOutputStream.close();
+        //清除临时文件!
+        ((SXSSFWorkbook)workbook).dispose();
+        long end = System.currentTimeMillis();
+        System.out.println((double)(end-start)/1000);
+    }
+
+
 }
