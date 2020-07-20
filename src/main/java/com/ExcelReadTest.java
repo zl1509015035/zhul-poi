@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
@@ -15,6 +16,10 @@ public class ExcelReadTest {
 
     String path = "D:\\Code\\zhul-poi";
 
+    /**
+     * 03版本的读excel操作
+     * @throws Exception
+     */
     @Test
     public void testRead03() throws Exception {
 
@@ -23,6 +28,31 @@ public class ExcelReadTest {
 
         //1.创建一个工作簿,并读取流
         Workbook workbook = new HSSFWorkbook(inputStream);
+        //2.创建一个工作表，并获取流中的sheet表
+        Sheet sheet = workbook.getSheetAt(0);
+        //3.创建一个行,并获取流中的行
+        Row row = sheet.getRow(0);
+        //4.创建一个单元格，获取流中的单元格
+        Cell cell = row.getCell(0);
+
+        System.out.println(cell.getStringCellValue());
+
+        inputStream.close();
+        System.out.println("生成完成！");
+    }
+
+    /**
+     * 07版本的读excel操作
+     * @throws Exception
+     */
+    @Test
+    public void testRead07() throws Exception {
+
+        //获取文件流
+        FileInputStream inputStream = new FileInputStream(path + "\\新增用户07.xlsx");
+
+        //1.创建一个工作簿,并读取流
+        Workbook workbook = new XSSFWorkbook(inputStream);
         //2.创建一个工作表，并获取流中的sheet表
         Sheet sheet = workbook.getSheetAt(0);
         //3.创建一个行,并获取流中的行
