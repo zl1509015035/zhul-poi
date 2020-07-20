@@ -98,4 +98,52 @@ public class ExcelWriteTest {
 
         System.out.println("生成完成！");
     }
+
+    @Test
+    public void testWrite03BigData() throws Exception {
+        long start = System.currentTimeMillis();
+
+        //创建一个工作簿
+        Workbook workbook = new HSSFWorkbook();
+        //创建页码
+        Sheet sheet = workbook.createSheet();
+        //写入数据
+        for (int rowNumber = 0; rowNumber < 65536; rowNumber++) {
+            Row row = sheet.createRow(rowNumber);
+            for (int cellNumber = 0; cellNumber < 10; cellNumber++) {
+                Cell cell = row.createCell(cellNumber);
+                cell.setCellValue(cellNumber);
+            }
+        }
+        System.out.println("over!");
+        FileOutputStream fileOutputStream = new FileOutputStream(path + "\\testWrite03BigData.xls");
+        workbook.write(fileOutputStream);
+        fileOutputStream.close();
+        long end = System.currentTimeMillis();
+        System.out.println((double)(end-start)/1000);
+    }
+
+    @Test
+    public void testWrite07BigData() throws Exception {
+        long start = System.currentTimeMillis();
+
+        //创建一个工作簿
+        Workbook workbook = new XSSFWorkbook();
+        //创建页码
+        Sheet sheet = workbook.createSheet();
+        //写入数据
+        for (int rowNumber = 0; rowNumber < 65537; rowNumber++) {
+            Row row = sheet.createRow(rowNumber);
+            for (int cellNumber = 0; cellNumber < 10; cellNumber++) {
+                Cell cell = row.createCell(cellNumber);
+                cell.setCellValue(cellNumber);
+            }
+        }
+        System.out.println("over!");
+        FileOutputStream fileOutputStream = new FileOutputStream(path + "\\testWrite07BigData.xls");
+        workbook.write(fileOutputStream);
+        fileOutputStream.close();
+        long end = System.currentTimeMillis();
+        System.out.println((double)(end-start)/1000);
+    }
 }
