@@ -36,7 +36,7 @@ public class ExcelWriteTest {
         row1.createCell(0);
         //(1,1)
         Cell cell11 = row1.createCell(0);
-        cell11.setCellValue("今日新增客 户");
+        cell11.setCellValue("今日新增客户");
         //(1,2)
         Cell cell12 = row1.createCell(1);
         cell12.setCellValue(666);
@@ -74,7 +74,7 @@ public class ExcelWriteTest {
         row1.createCell(0);
         //(1,1)
         Cell cell11 = row1.createCell(0);
-        cell11.setCellValue("今日新增客 户");
+        cell11.setCellValue("今日新增客户");
         //(1,2)
         Cell cell12 = row1.createCell(1);
         cell12.setCellValue(666);
