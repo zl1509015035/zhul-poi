@@ -11,6 +11,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Date;
 
+/**
+ * @author zhul
+ */
 public class ExcelReadTest {
 
     String path = "D:\\Code\\zhul-poi";
@@ -238,27 +241,8 @@ public class ExcelReadTest {
         inputStream.close();
     }
 
-
-    public void testFormula() throws Exception {
-        FileInputStream inputStream = new FileInputStream(path + "\\公式.xls");
-        Workbook workbook = new HSSFWorkbook(inputStream);
-        Sheet sheet = workbook.getSheetAt(0);
-        Row row = sheet.getRow(4);
-        Cell cell = row.getCell(0);
-        // 拿到计算公式 eval 
-        FormulaEvaluator fFormulaEvaluator = new HSSFFormulaEvaluator((HSSFWorkbook) workbook);
-
-        //输出单元格的内容
-        int cellType = cell.getCellType();
-        switch (cellType) {
-            //公式
-            case Cell.CELL_TYPE_FORMULA:
-                String formula = cell.getCellFormula();
-                System.out.println(formula);
-
-                //计算
-        }
-
-
-    }
 }
+
+
+
+
