@@ -238,7 +238,10 @@ public class ExcelReadTest {
         inputStream.close();
     }
 
-
+    /**
+     * poi读取公式
+     * @throws Exception
+     */
     public void testFormula() throws Exception {
         FileInputStream inputStream = new FileInputStream(path + "\\公式.xls");
         Workbook workbook = new HSSFWorkbook(inputStream);
