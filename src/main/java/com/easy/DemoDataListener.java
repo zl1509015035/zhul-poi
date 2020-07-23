@@ -12,6 +12,7 @@ import java.util.List;
 // 有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
 /**
  * 写一个类继承 AnalysisEventListener<>类，重写方法invoke
+ * @author zhul
  */
 public class DemoDataListener extends AnalysisEventListener<DemoData> {
     private static final Logger LOGGER = LoggerFactory.getLogger(DemoDataListener.class);

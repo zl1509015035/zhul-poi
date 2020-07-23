@@ -7,11 +7,10 @@ import java.util.List;
  *
  * @author zhul
  */
-public class DemoDao {
+public class IndexOrNameDao {
 
-    public void save(List<DemoData> list) {
+    public void save(List<IndexOrNameDate> list) {
         // 如果是mybatis,尽量别直接调用多次insert,自己写一个mapper里面新增一个方法batchInsert,所有数据一次性插入
-
     }
 
 }

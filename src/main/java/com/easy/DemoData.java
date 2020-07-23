@@ -8,12 +8,12 @@ import java.util.Date;
 
 @Data
 public class DemoData {
-    @ExcelProperty("字符串标题")
+    @ExcelProperty(index=0)
     private  String string;
-    @ExcelProperty("日期标题")
-    private Date date;
-    @ExcelProperty("数学标题")
-    private Double doubleData;
+//    @ExcelProperty("日期标题")
+//    private Date date;
+//    @ExcelProperty("数学标题")
+//    private Double doubleData;
 
     /**
      * 忽略这个字段
