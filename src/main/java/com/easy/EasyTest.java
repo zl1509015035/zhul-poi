@@ -31,7 +31,7 @@ public class EasyTest {
      * <p>1. 创建excel对应的实体对象 参照{@link DemoData}
      * <p>2. 直接写即可
      */
-    @org.junit.Test
+    @Test
     public void simpleWrite() {
         // 写法1
         String fileName = path + "\\EasyTest" + ".xlsx";
