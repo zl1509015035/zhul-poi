@@ -30,7 +30,7 @@ public class IndexOrNameDataListener extends AnalysisEventListener<IndexOrNameDa
 
     @Override
     public void invoke(IndexOrNameDate data, AnalysisContext context) {
-        LOGGER.info("解析到一条数据：{}", JSON.toJSONString(data));
+        LOGGER.info("{}", JSON.toJSONString(data));
         String str = data.getString();
         Double d = data.getDoubleData();
         System.out.println(str+"====="+d);
